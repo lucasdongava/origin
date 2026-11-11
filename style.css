@@ -353,3 +353,9 @@ textarea::placeholder,input::placeholder{color:var(--muted);opacity:1}
 
 
 .only-m[hidden]{display:none!important}
+
+/* Phones: no card and no animated squares in the banner, just the headline, the text and the button. */
+@media (max-width:700px){
+  .hero{background:none;border-radius:0;padding:24px 0 8px;overflow:visible}
+  .hero .px{display:none}
+}
