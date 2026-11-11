@@ -321,3 +321,34 @@ textarea::placeholder,input::placeholder{color:var(--muted);opacity:1}
 .fig.s-warn{--sd:#D92D20}
 .grp.v-add .gt{color:var(--st)}
 .grp.v-remove .gt{color:var(--st)}
+
+/* Phones: a calmer, shorter banner. Squares stay behind the lower edge only, the example is stacked line by line. */
+@media (max-width:700px){
+  .hero{padding:40px 20px 44px;gap:0}
+  .hero .px{opacity:.6;-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 68%,#000 100%);mask-image:linear-gradient(180deg,transparent 0,transparent 68%,#000 100%)}
+  .hero .lede{font-size:clamp(1.875rem,8.6vw,2.25rem);line-height:1.08}
+  .hero .sub{font-size:1rem}
+  .hero .cta{padding-top:4px}
+  .hero .cta .btn{width:100%;justify-content:center}
+  .hero-card{display:none}   /* the example panel is for larger screens only */
+  .hc-head{padding:12px 14px 10px}
+  .hc-list li{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"op ty" "nm nm" "val val";column-gap:12px;row-gap:3px;padding:12px 14px}
+  .hc-foot{padding:10px 14px 12px}
+  .home .nav .btn{display:none}
+  /* DNS tables on a phone: each record is a small block (type, name and TTL on top, the value in full below) instead of a wide table that has to be scrolled sideways. */
+  .dnst{overflow:visible}
+  .dnst table,.dnst tbody{display:block;min-width:0;width:100%}
+  .dnst thead{display:none}
+  .dnst tr{display:grid;grid-template-columns:62px minmax(0,1fr) auto;grid-template-areas:"ty nm tt" "ct ct ct" "px px px";column-gap:12px;row-gap:3px;padding:12px 14px;border-bottom:1px solid var(--line)}
+  .dnst tr:last-child{border-bottom:0}
+  .dnst td,.dnst th{display:block;padding:0;border:0!important;white-space:normal}
+  .dnst td.ty{grid-area:ty;width:auto}
+  .dnst td.nm{grid-area:nm;overflow-wrap:anywhere}
+  .dnst td.tt{grid-area:tt;text-align:right}
+  .dnst td.ct{grid-area:ct;min-width:0;max-width:none}
+  .dnst td:not([class]){grid-area:px}
+  .dnst tbody tr:hover td{background:none}
+}
+
+
+.only-m[hidden]{display:none!important}
