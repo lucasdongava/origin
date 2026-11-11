@@ -1,4 +1,4 @@
-# Parity
+# Origin
 
 Compare two DNS zones for a domain migration: see what is missing at the destination and what can be left behind.
 
