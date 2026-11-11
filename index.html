@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Parity</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Still frame of the mark. The script below brings it to life. -->
+  <symbol id="mark" viewBox="-4 -4 104 104"><path fill="currentColor" d="M32.00 0.00L64.00 0.00L81.05 0.00A8.00 8.00 0 0 1 87.71 12.44L66.96 43.56A8.00 8.00 0 0 0 66.96 52.44L80.00 72.00L88.00 84.00A7.72 7.72 0 0 1 81.58 96.00L64.00 96.00L32.00 96.00L14.95 96.00A8.00 8.00 0 0 1 8.29 83.56L29.04 52.44A8.00 8.00 0 0 0 29.04 43.56L16.00 24.00L8.00 12.00A7.72 7.72 0 0 1 14.42 0.00Z"/></symbol>
+</svg>
+
+<div class="wrap home" data-view="home">
+  <header class="nav">
+    <div class="brand"><span class="mk" aria-hidden="true"><svg><use href="#mark"/></svg></span><h1>Parity</h1></div>
+    <a class="btn blue" href="tool.html">Open the tool</a>
+  </header>
+
+  <section class="hero">
+    <canvas class="px" data-fade="1" aria-hidden="true"></canvas>
+    <div class="hero-text">
+      <p class="eyebrow">DNS zone comparison</p>
+      <p class="lede">Compare two DNS zones. <span>See what's missing and what's left over.</span></p>
+      <p class="sub">Built for domain migrations. Say what has to keep working and copy the list of records to add and records to remove.</p>
+      <div class="cta">
+        <a class="btn blue lg" href="tool.html">Open the tool</a>
+        <button type="button" class="lnk" data-scroll="demo">See the example</button>
+      </div>
+    </div>
+    <aside class="hero-card" aria-label="Example result">
+      <div class="hc-head"><span class="hc-dom">example.com</span><span class="hc-count">4 changes</span></div>
+      <ul class="hc-list">
+        <li><span class="hc-op">Add</span><span class="hc-ty">TXT</span><span class="hc-nm">default._domainkey</span><span class="hc-val">v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC7vExample0nlyN0tARealKey8dYpQw3Zc1r</span></li>
+        <li><span class="hc-op">Add</span><span class="hc-ty">CNAME</span><span class="hc-nm">webmail</span><span class="hc-val">webmail.mail-provider.example</span></li>
+        <li><span class="hc-op">Add</span><span class="hc-ty">CNAME</span><span class="hc-nm">autodiscover</span><span class="hc-val">autodiscover.mail-provider.example</span></li>
+        <li><span class="hc-op chg">Change</span><span class="hc-ty">TXT</span><span class="hc-nm">example.com</span><span class="hc-val">v=spf1 a mx include:_spf.mail-provider.example ~all</span></li>
+      </ul>
+      <div class="hc-foot">Everything else already matches.</div>
+    </aside>
+  </section>
+
+  <section class="sec">
+    <h2>How it works</h2>
+    <ol class="cols">
+      <li><span class="k">1</span><strong>Paste the zones</strong><span class="t">A BIND file, a table copied from the panel, or a screenshot.</span></li>
+      <li><span class="k">2</span><strong>Say what has to work</strong><span class="t">Website, email, subdomains. Switch on only what matters.</span></li>
+      <li><span class="k">3</span><strong>Copy the result</strong><span class="t">What to add, what to remove, and the final zone.</span></li>
+    </ol>
+  </section>
+
+  <section class="sec" id="demo">
+    <div class="ex" data-ex>
+      <button type="button" class="ex-head" id="ex-btn" aria-expanded="false" aria-controls="ex-body">
+        <span class="ex-text">
+          <span class="ex-k">Example</span>
+          <span class="ex-t">View the example</span>
+          <span class="ex-s">A migration of example.com. Switch things on and off and watch the list change.</span>
+        </span>
+        <span class="ex-ic" aria-hidden="true"><span class="pm"></span></span>
+      </button>
+      <div class="ex-body" id="ex-body" hidden>
+        <div class="ex-in">
+    <div class="zones">
+      <div class="zone">
+        <div class="zone-head"><span class="zl">Origin</span><span class="count" id="demo-mo"></span></div>
+        <div class="dnst" id="demo-o" tabindex="0"></div>
+      </div>
+      <div class="zone">
+        <div class="zone-head"><span class="zl">Destination</span><span class="count" id="demo-md"></span></div>
+        <div class="dnst" id="demo-d" tabindex="0"></div>
+      </div>
+    </div>
+    <div class="console">
+      <fieldset class="panel">
+        <legend>What has to work?</legend>
+        <div class="switches" data-el="goals"></div>
+      </fieldset>
+      <section class="results" data-el="results" aria-live="polite"></section>
+    </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>What it does for you</h2>
+    <ul class="cols two">
+      <li><strong>Follows dependencies</strong><span class="t">If email depends on a record, that record stays, even if you didn't ask for it.</span></li>
+      <li><strong>Flags what's missing</strong><span class="t">No DMARC, a duplicate SPF, an MX with no address.</span></li>
+      <li><strong>Reads a panel screenshot</strong><span class="t">Upload the image and the records are read on your device. It can make mistakes, so always check the result.</span></li>
+      <li><strong>Nothing is saved</strong><span class="t">The comparison runs on your device. We store nothing: what you paste is gone when you close the page.</span></li>
+    </ul>
+  </section>
+
+  <section class="end">
+    <p class="eyebrow">Ready when you are</p>
+    <p class="end-title">Have a migration to check?<span> Paste both zones and see the difference in seconds.</span></p>
+    <div class="end-act">
+      <a class="btn blue lg" href="tool.html">Open the tool</a>
+      <span class="end-note">Free. Runs in your browser.</span>
+    </div>
+  </section>
+</div>
+<script src="core.js?v=1"></script>
+<script src="app.js?v=1"></script>
+<script src="hover.js?v=1"></script>
+</body>
+</html>

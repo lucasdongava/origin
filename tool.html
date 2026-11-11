@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Parity - Tool</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Still frame of the mark. The script below brings it to life. -->
+  <symbol id="mark" viewBox="-4 -4 104 104"><path fill="currentColor" d="M32.00 0.00L64.00 0.00L81.05 0.00A8.00 8.00 0 0 1 87.71 12.44L66.96 43.56A8.00 8.00 0 0 0 66.96 52.44L80.00 72.00L88.00 84.00A7.72 7.72 0 0 1 81.58 96.00L64.00 96.00L32.00 96.00L14.95 96.00A8.00 8.00 0 0 1 8.29 83.56L29.04 52.44A8.00 8.00 0 0 0 29.04 43.56L16.00 24.00L8.00 12.00A7.72 7.72 0 0 1 14.42 0.00Z"/></symbol>
+</svg>
+
+<div class="wrap" data-view="tool">
+  <header class="nav">
+    <a class="brand" href="index.html"><span class="mk" aria-hidden="true"><svg><use href="#mark"/></svg></span><h1>Parity</h1></a>
+    <a class="btn blue" href="index.html">About the project</a>
+  </header>
+
+  <section class="input" aria-label="Zones">
+    <div class="zones">
+      <div class="zone" data-side="o">
+        <div class="zone-head"><label for="zo">Origin</label><span class="chip" id="exo" hidden>example</span><span class="count" id="mo"></span></div>
+        <textarea id="zo" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Paste the zone file (BIND) or the table copied from the panel"></textarea>
+        <div class="dnst zt" id="zto" hidden></div>
+        <div class="zone-foot">
+          <div class="drop" id="dropo">
+            <button type="button" class="btn sm" id="picko">Read from a screenshot</button>
+            <span>or drag and paste the image here</span>
+            <input type="file" id="fo" accept="image/png,image/jpeg,image/webp" multiple hidden>
+          </div>
+          <button type="button" class="btn sm only-m" id="edito">Edit text</button>
+          <p class="status" id="so" role="status" hidden></p>
+        </div>
+      </div>
+      <div class="zone" data-side="d">
+        <div class="zone-head"><label for="zd">Destination</label><span class="chip" id="exd" hidden>example</span><span class="count" id="md"></span></div>
+        <textarea id="zd" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Optional. Without a destination, this becomes a cleanup of the origin"></textarea>
+        <div class="dnst zt" id="ztd" hidden></div>
+        <div class="zone-foot">
+          <div class="drop" id="dropd">
+            <button type="button" class="btn sm" id="pickd">Read from a screenshot</button>
+            <span>or drag and paste the image here</span>
+            <input type="file" id="fd" accept="image/png,image/jpeg,image/webp" multiple hidden>
+          </div>
+          <button type="button" class="btn sm only-m" id="editd">Edit text</button>
+          <p class="status" id="sd" role="status" hidden></p>
+        </div>
+      </div>
+    </div>
+    <p class="ocr-note">Text recognition can make mistakes. Check the result before trusting it.</p>
+    <div class="bar">
+      <div class="btns">
+        <button class="btn" id="bex" type="button">Example</button>
+        <button class="btn" id="bcl" type="button">Clear</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="console">
+    <fieldset class="panel">
+      <legend>What has to work?</legend>
+      <div class="switches" data-el="goals"></div>
+    </fieldset>
+    <section class="results" data-el="results" aria-live="polite"></section>
+  </div>
+
+  <p class="foot" data-flip="foot">The comparison runs in your browser. <strong>We do not save any data:</strong> what you paste is not stored or sent to any server, and it disappears when you close or reload this page. Screenshots are read on your device too, and the image is never uploaded. Reading text from an image can make mistakes, so always check the result. Before deleting a record in production, check with whoever manages the domain.</p>
+</div>
+<script src="core.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
