@@ -560,8 +560,10 @@ for(const side of ['o','d']){
 /* The mark behaves like a zone: one connected outline that keeps reshaping itself.
    It is a single polygon. Its corners glide from one arrangement to the next, every edge stays straight and every corner keeps the same radius. */
 (function mark(){
-  const U=32,R=8,HOLD=420,MOVE=1050;
+  const U=32,R=8,HOLD=1500,MOVE=1000;
   const KEYS=[[[1,0],[2,0],[3,0],[2,1.5],[2.5,2.25],[3,3],[2,3],[1,3],[0,3],[1,1.5],[0.5,0.75],[0,0]],[[0.75,0],[1.5,0],[2.25,0.75],[3,1.5],[2.25,2.25],[1.5,3],[1,3],[0.5,3],[0,3],[0.75,2.25],[1.5,1.5],[0,0]],[[0.5,0],[1,0],[1,1],[2,1],[2,2],[3,2],[3,3],[1.5,3],[0,3],[0,2],[0,1],[0,0]],[[0,0],[1,0],[2,1],[3,1],[3,2],[3,2.5],[3,3],[2,3],[1,2],[0,2],[0,1],[0,0.5]],[[1.6,0],[2.4,0],[3,0],[2.75,0.75],[2.25,2.25],[2,3],[1.4,3],[0.6,3],[0,3],[0.25,2.25],[0.75,0.75],[1,0]],[[1,0],[2,0],[2.5,0.5],[3,1],[3,2],[2.5,2.5],[2,3],[1,3],[0.5,2.5],[0,2],[0,1],[0.5,0.5]],[[1,0],[2,0],[2,1],[3,1],[3,2],[2,2],[2,3],[1,3],[1,2],[0,2],[0,1],[1,1]]];
+  const SH=KEYS[3],MIR=SH.map((_,i)=>{const q=SH[(SH.length-i)%SH.length];return[3-q[0],q[1]];});
+  const BLOB=KEYS[5];KEYS.length=0;KEYS.push(SH,MIR);   // only two shapes: the logo and its mirror image
   const paths=[];
   document.querySelectorAll('.mk').forEach(host=>{
     host.innerHTML='<svg viewBox="-4 -4 104 104" aria-hidden="true"><path fill="currentColor"/></svg>';
@@ -582,15 +584,17 @@ for(const side of ['o','d']){
     return 'M'+parts.join('L')+'Z';
   }
   const at=(a,b,t)=>a.map((p,i)=>[(p[0]+(b[i][0]-p[0])*t)*U,(p[1]+(b[i][1]-p[1])*t)*U]);
+  /* On the way from the logo to its mirror image the shape melts into a soft round blob and re-forms. */
+  const mix=(a,b,e)=>{const s=Math.sin(Math.PI*e)*.3;return a.map((p,i)=>[((p[0]+(b[i][0]-p[0])*e)*(1-s)+BLOB[i][0]*s)*U,((p[1]+(b[i][1]-p[1])*e)*(1-s)+BLOB[i][1]*s)*U]);};
   const draw=d=>paths.forEach(p=>p.setAttribute('d',d));
   draw(outline(at(KEYS[0],KEYS[0],0)));
   if(calm.matches||!window.requestAnimationFrame)return;
-  const ease=x=>x<.5?16*x*x*x*x*x:1-Math.pow(-2*x+2,5)/2;
+  const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;   // cubic in/out: direct, quick through the middle
   let t0=0,was=-1;
   function frame(now){
     if(!t0)t0=now;
     const span=HOLD+MOVE,el=now-t0,k=Math.floor(el/span)%KEYS.length,local=el%span;
-    if(local>=HOLD){draw(outline(at(KEYS[k],KEYS[(k+1)%KEYS.length],ease((local-HOLD)/MOVE))));was=-1;}
+    if(local>=HOLD){draw(outline(mix(KEYS[k],KEYS[(k+1)%KEYS.length],ease((local-HOLD)/MOVE))));was=-1;}
     else if(was!==k){draw(outline(at(KEYS[k],KEYS[k],0)));was=k;}
     requestAnimationFrame(frame);
   }
