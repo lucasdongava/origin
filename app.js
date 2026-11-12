@@ -8,7 +8,7 @@ const EMPTY={add:'; Nothing to add.',remove:'; Nothing to remove.',final:'; The 
 /* A field of squares that behaves like a contributions graph: each cell lights up, steps through tones and goes out. */
 const fields=[];
 function field(cv){
-  const ctx=cv.getContext('2d'),fade=!!cv.dataset.fade,PITCH=16,GAP=3,EMPTY=[232,234,255],FULL=[10,10,255];
+  const ctx=cv.getContext('2d'),fade=!!cv.dataset.fade,PITCH=16,GAP=3,EMPTY=[234,234,236],FULL=[11,11,12];
   let cols=0,rows=0,v=null,t=null,dpr=1,seed=1,last=0,acc=0,running=false;
   const rnd=()=>{seed=seed+0x6D2B79F5|0;let x=Math.imul(seed^seed>>>15,1|seed);x=x+Math.imul(x^x>>>7,61|x)^x;return((x^x>>>14)>>>0)/4294967296;};
   const level=()=>{const r=rnd();return r<.4?.25:r<.7?.5:r<.9?.75:1;};

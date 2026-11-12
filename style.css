@@ -2,8 +2,8 @@
    Section labels in grey mono, light grotesque headings, plain lists instead of cards. */
 :root{
   color-scheme:light;
-  --bg:#FFFFFF; --field:#FAFAFA; --tint:#F5F6FF; --ink:#0B0B0C; --muted:#646464; --label:#787878; --line:#E8E8E8; --soft:#D0D0D0; --grey:#B8B8B8;
-  --blue:#0A0AFF; --blue-h:#0000CC; --blue-d:#0A0AFF;
+  --bg:#FFFFFF; --field:#FAFAFA; --tint:#F4F4F5; --ink:#0B0B0C; --muted:#646464; --label:#787878; --line:#E8E8E8; --soft:#D0D0D0; --grey:#B8B8B8;
+  --blue:#0B0B0C; --blue-h:#2A2A2E; --blue-d:#0B0B0C;
   --shadow:0 1px 2px rgba(11,11,12,.18);
   --ease:cubic-bezier(.22,.8,.24,1);
   --r:18px; --rc:12px; --rl:28px;
@@ -201,7 +201,7 @@ textarea::placeholder,input::placeholder{color:var(--muted);opacity:1}
 .v-diff{--g:var(--g-neq)}
 .v-remove{--c:#6A6A6A;--g:var(--g-minus)}
 .v-ok,.v-keep{--g:var(--g-check)}
-.v-review{--cb:#E7E8FF;--c:var(--blue);--g:var(--g-ask)}
+.v-review{--cb:#ECECEC;--c:var(--blue);--g:var(--g-ask)}
 .v-skip,.v-infra{--cb:#F0F0F0;--c:#9A9A9A;--g:var(--g-minus)}
 .s-warn{--cb:#FFE1E1;--c:#D92D20;--g:var(--g-bang)}
 .s-crit{--cb:#D92D20;--c:#fff;--g:var(--g-bang)}
