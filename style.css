@@ -18,7 +18,7 @@ a{color:inherit}
 h1{font-size:15px;font-weight:600;letter-spacing:-.01em}
 h2,.eyebrow,.panel legend{font-family:var(--font-mono);font-size:15px;font-weight:400;letter-spacing:-.01em;color:var(--label)}
 :focus-visible{outline:2px solid var(--blue-d);outline-offset:2px;border-radius:8px}
-.btn:focus-visible,.sw:focus-visible{border-radius:980px}
+.btn:focus-visible,.sw:focus-visible{border-radius:8px}
 
 .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:12px}
@@ -26,13 +26,14 @@ a.brand,a.btn{text-decoration:none}
 .mk{display:inline-flex;width:32px;height:32px;flex:none}
 .mk svg{width:32px;height:32px;display:block;overflow:visible}
 
-.btn{font:inherit;font-size:13px;font-weight:500;line-height:1.2;padding:10px 16px;border:1px solid var(--soft);border-radius:980px;background:var(--bg);color:var(--ink);cursor:pointer;white-space:nowrap}
+.btn{font:inherit;font-size:13px;font-weight:500;line-height:1.2;padding:10px 16px;border:0;border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;white-space:nowrap;box-shadow:0 0 0 1px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.08);transition:background .15s ease,box-shadow .15s ease}
 a.btn{display:inline-flex;align-items:center}
-.btn:hover{border-color:var(--ink)}
+.btn:hover{background:#F4F4F5}
 .btn[disabled]{opacity:.5;cursor:default}
 .btn.sm{font-size:12px;padding:8px 14px}
-.btn.dark{background:var(--ink);border-color:var(--ink);color:var(--bg);padding:12px 24px}
-.btn.dark:hover{background:#2A2A2E;border-color:#2A2A2E}
+.btn.dark{background:linear-gradient(180deg,#3F3F46 0%,#18181B 100%);color:#fff;padding:12px 24px;box-shadow:0 0 0 1px #09090B,0 1px 2px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.22)}
+.btn.dark:hover{background:linear-gradient(180deg,#52525B 0%,#27272A 100%)}
+.btn.dark:active{background:linear-gradient(180deg,#27272A 0%,#18181B 100%);box-shadow:0 0 0 1px #09090B,inset 0 1px 2px rgba(0,0,0,.4)}
 .btn.lg{font-size:15px;padding:16px 28px}
 .btn.blue{background:linear-gradient(180deg,#3F3F46 0%,#18181B 100%);border:0;border-radius:8px;color:#fff;font-weight:500;letter-spacing:-.005em;box-shadow:0 0 0 1px #09090B,0 1px 2px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.22);transition:background .15s ease,box-shadow .15s ease}
 .btn.blue:hover{background:linear-gradient(180deg,#52525B 0%,#27272A 100%);border:0}
