@@ -34,8 +34,10 @@ a.btn{display:inline-flex;align-items:center}
 .btn.dark{background:var(--ink);border-color:var(--ink);color:var(--bg);padding:12px 24px}
 .btn.dark:hover{background:#2A2A2E;border-color:#2A2A2E}
 .btn.lg{font-size:15px;padding:16px 28px}
-.btn.blue{background:var(--blue);border-color:var(--blue);color:#fff}
-.btn.blue:hover{background:var(--blue-h);border-color:var(--blue-h)}
+.btn.blue{background:linear-gradient(180deg,#3F3F46 0%,#18181B 100%);border:0;border-radius:8px;color:#fff;font-weight:500;letter-spacing:-.005em;box-shadow:0 0 0 1px #09090B,0 1px 2px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.22);transition:background .15s ease,box-shadow .15s ease}
+.btn.blue:hover{background:linear-gradient(180deg,#52525B 0%,#27272A 100%);border:0}
+.btn.blue:active{background:linear-gradient(180deg,#27272A 0%,#18181B 100%);box-shadow:0 0 0 1px #09090B,inset 0 1px 2px rgba(0,0,0,.4)}
+.btn.blue.lg{padding:14px 24px}
 
 /* Landing */
 .home{gap:144px}
